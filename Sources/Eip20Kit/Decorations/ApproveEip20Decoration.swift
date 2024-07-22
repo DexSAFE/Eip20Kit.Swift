@@ -14,9 +14,10 @@ public class ApproveEip20Decoration: TransactionDecoration {
         super.init()
     }
 
-    override public func tags() -> [TransactionTag] {
+    public override func tags() -> [TransactionTag] {
         [
-            TransactionTag(type: .approve, protocol: .eip20, contractAddress: contractAddress),
+            TransactionTag(type: .approve, protocol: .eip20, contractAddress: contractAddress)
         ]
     }
+
 }

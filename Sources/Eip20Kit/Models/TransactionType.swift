@@ -1,11 +1,11 @@
 import GRDB
 
 public enum TransactionType: String, DatabaseValueConvertible {
-    case transfer
-    case approve
+    case transfer = "transfer"
+    case approve = "approve"
 
     public var databaseValue: DatabaseValue {
-        rawValue.databaseValue
+        self.rawValue.databaseValue
     }
 
     public static func fromDatabaseValue(_ dbValue: DatabaseValue) -> TransactionType? {
@@ -15,4 +15,5 @@ public enum TransactionType: String, DatabaseValueConvertible {
 
         return nil
     }
+
 }

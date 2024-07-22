@@ -1,5 +1,5 @@
-import BigInt
 import EvmKit
+import BigInt
 
 public class ApproveEventInstance: ContractEventInstance {
     static let signature = ContractEvent(name: "Approval", arguments: [.address, .address, .uint256]).signature
@@ -16,9 +16,10 @@ public class ApproveEventInstance: ContractEventInstance {
         super.init(contractAddress: contractAddress)
     }
 
-    override public func tags(userAddress _: Address) -> [TransactionTag] {
+    public override func tags(userAddress: Address) -> [TransactionTag] {
         [
-            TransactionTag(type: .approve, protocol: .eip20, contractAddress: contractAddress),
+            TransactionTag(type: .approve, protocol: .eip20, contractAddress: contractAddress)
         ]
     }
+
 }

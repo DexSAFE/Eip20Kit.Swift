@@ -17,23 +17,25 @@ class Eip20TransactionSyncer {
 
         let events = transactions.map { tx in
             Event(
-                hash: tx.hash,
-                blockNumber: tx.blockNumber,
-                contractAddress: tx.contractAddress,
-                from: tx.from,
-                to: tx.to,
-                value: tx.value,
-                tokenName: tx.tokenName,
-                tokenSymbol: tx.tokenSymbol,
-                tokenDecimal: tx.tokenDecimal
+                    hash: tx.hash,
+                    blockNumber: tx.blockNumber,
+                    contractAddress: tx.contractAddress,
+                    from: tx.from,
+                    to: tx.to,
+                    value: tx.value,
+                    tokenName: tx.tokenName,
+                    tokenSymbol: tx.tokenSymbol,
+                    tokenDecimal: tx.tokenDecimal
             )
         }
 
         storage.save(events: events)
     }
+
 }
 
 extension Eip20TransactionSyncer: ITransactionSyncer {
+
     func transactions() async throws -> ([Transaction], Bool) {
         let lastBlockNumber = storage.lastEvent()?.blockNumber ?? 0
         let initial = lastBlockNumber == 0
@@ -45,15 +47,15 @@ extension Eip20TransactionSyncer: ITransactionSyncer {
 
             let array = transactions.map { tx in
                 Transaction(
-                    hash: tx.hash,
-                    timestamp: tx.timestamp,
-                    isFailed: false,
-                    blockNumber: tx.blockNumber,
-                    transactionIndex: tx.transactionIndex,
-                    nonce: tx.nonce,
-                    gasPrice: tx.gasPrice,
-                    gasLimit: tx.gasLimit,
-                    gasUsed: tx.gasUsed
+                        hash: tx.hash,
+                        timestamp: tx.timestamp,
+                        isFailed: false,
+                        blockNumber: tx.blockNumber,
+                        transactionIndex: tx.transactionIndex,
+                        nonce: tx.nonce,
+                        gasPrice: tx.gasPrice,
+                        gasLimit: tx.gasLimit,
+                        gasUsed: tx.gasUsed
                 )
             }
 
@@ -62,4 +64,5 @@ extension Eip20TransactionSyncer: ITransactionSyncer {
             return ([], initial)
         }
     }
+
 }

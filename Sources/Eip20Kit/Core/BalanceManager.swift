@@ -1,6 +1,6 @@
-import BigInt
-import EvmKit
 import Foundation
+import EvmKit
+import BigInt
 import HsExtensions
 
 class BalanceManager {
@@ -32,9 +32,11 @@ class BalanceManager {
             delegate?.onSyncBalanceFailed(error: error)
         }
     }
+
 }
 
 extension BalanceManager: IBalanceManager {
+
     var balance: BigUInt? {
         storage.balance(contractAddress: contractAddress)
     }
@@ -42,4 +44,5 @@ extension BalanceManager: IBalanceManager {
     func sync() {
         Task { [weak self] in await self?._sync() }.store(in: &tasks)
     }
+
 }

@@ -1,7 +1,7 @@
-import BigInt
-import Combine
-import EvmKit
 import Foundation
+import Combine
+import BigInt
+import EvmKit
 
 protocol IBalanceManagerDelegate: AnyObject {
     func onSyncBalanceSuccess(balance: BigUInt)
